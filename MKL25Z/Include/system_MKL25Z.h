@@ -1,6 +1,6 @@
 /**************************************************************************//**
  * @file     system_MKL25Z.h
- * @brief    CMSIS Cortex-M# Device Peripheral Access Layer Header File for
+ * @brief    CMSIS Cortex-M0Plus Device Peripheral Access Layer Header File for
  *           Device MKL25Z
  * @version  V3.10
  * @date     23. November 2012
@@ -36,7 +36,7 @@
    ---------------------------------------------------------------------------*/
 
 
-#ifndef SYSTEM_MKL25Z_H   /* ToDo: replace '<Device>' with your device name */
+#ifndef SYSTEM_MKL25Z_H
 #define SYSTEM_MKL25Z_H
 
 #ifdef __cplusplus

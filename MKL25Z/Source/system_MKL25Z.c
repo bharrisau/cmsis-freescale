@@ -1,6 +1,6 @@
 /**************************************************************************//**
  * @file     system_MKL25Z.c
- * @brief    CMSIS Cortex-M# Device Peripheral Access Layer Source File for
+ * @brief    CMSIS Cortex-M0Plus Device Peripheral Access Layer Source File for
  *           Device MKL25Z
  * @version  V3.10
  * @date     23. November 2012
