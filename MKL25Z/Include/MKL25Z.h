@@ -139,99 +139,133 @@ typedef enum IRQn
   @{
 */
 
-#if defined ( __CC_ARM   )
-#pragma anon_unions
+/* -------------------  Start of section using anonymous unions  ------------------ */
+#if defined(__CC_ARM)
+  #pragma push
+  #pragma anon_unions
+#elif defined(__ICCARM__)
+  #pragma language=extended
+#elif defined(__GNUC__)
+  /* anonymous unions are enabled by default */
+#elif defined(__TMS470__)
+/* anonymous unions are enabled by default */
+#elif defined(__TASKING__)
+  #pragma warning 586
+#else
+  #warning Not supported compiler type
 #endif
 
+#include "../../peripheral/mcg.h"
 
-
-/* ToDo: add here your device specific peripheral access structure typedefs
-         following is an example for a timer                                  */
-
-/*------------- 16-bit Timer/Event Counter (TMR) -----------------------------*/
-/** @addtogroup MKL25Z_TMR MKL25Z 16-bit Timer/Event Counter (TMR)
-  @{
-*/
-typedef struct
-{
-  __IO uint32_t EN;                         /*!< Offset: 0x0000   Timer Enable Register           */
-  __IO uint32_t RUN;                        /*!< Offset: 0x0004   Timer RUN Register              */
-  __IO uint32_t CR;                         /*!< Offset: 0x0008   Timer Control Register          */
-  __IO uint32_t MOD;                        /*!< Offset: 0x000C   Timer Mode Register             */
-       uint32_t RESERVED0[1];
-  __IO uint32_t ST;                         /*!< Offset: 0x0014   Timer Status Register           */
-  __IO uint32_t IM;                         /*!< Offset: 0x0018   Interrupt Mask Register         */
-  __IO uint32_t UC;                         /*!< Offset: 0x001C   Timer Up Counter Register       */
-  __IO uint32_t RG0                         /*!< Offset: 0x0020   Timer Register                  */
-       uint32_t RESERVED1[2];
-  __IO uint32_t CP;                         /*!< Offset: 0x002C   Capture register                */
-} <DeviceAbbreviation>_TMR_TypeDef;
-/*@}*/ /* end of group MKL25Z_TMR */
-
-
-#if defined ( __CC_ARM   )
-#pragma no_anon_unions
+/* --------------------  End of section using anonymous unions  ------------------- */
+#if defined(__CC_ARM)
+  #pragma pop
+#elif defined(__ICCARM__)
+  /* leave anonymous unions enabled */
+#elif defined(__GNUC__)
+  /* anonymous unions are enabled by default */
+#elif defined(__TMS470__)
+  /* anonymous unions are enabled by default */
+#elif defined(__TASKING__)
+  #pragma warning restore
+#else
+  #warning Not supported compiler type
 #endif
 
 /*@}*/ /* end of group MKL25Z_Peripherals */
 
 /******************************************************************************/
-/*                           Peripheral declaration                           */
+/*                         Peripheral memory map                              */
 /******************************************************************************/
-/** @addtogroup MKL25Z_MemoryMap MKL25Z Memory Mapping and declaration
+/** @addtogroup MKL25Z_MemoryMap MKL25Z Memory Mapping
   @{
 */
 
 /* Peripheral and base address */
-#define MKL25Z_PERIPH_BASE      (0x40000000UL)                              /*!< (Peripheral) Base Address */
-
-/* Shortcut macro */
-#define MKL25Z_REG_BASE(name, addr) #define name ## _BASE (MKL25Z_PERIPH_BASE + addr)
-#define MKL25Z_REG_PER(name, type, addr) \
-    MKL25Z_REG_BASE(name, addr) \
-    #define NAME ((type ## _TypeDef *) name ## _BASE)
-
-/* Peripherals */
-#include "../../peripheral/mcg.h"
+#define MKL25Z_PERIPH_BASE      (0x40000000UL)  /*!< (Peripheral) Base Address */
 
 /* Peripheral memory map */
-// MKL25Z_REG_PER(DMA,       DMA,        0x08000)
-// MKL25Z_REG_PER(GPIO_CON,  GPIO_CON,   0x0F000)
-// MKL25Z_REG_PER(FLASH_CON, FLASH_CON,  0x20000)
-// MKL25Z_REG_PER(DMAMUX0,   DMAMUX,     0x21000)
-// MKL25Z_REG_PER(PIT,       PIT,        0x37000)
-// MKL25Z_REG_PER(TPM0,      TPM,        0x38000)
-// MKL25Z_REG_PER(TPM1,      TPM,        0x39000)
-// MKL25Z_REG_PER(TPM2,      TPM,        0x3A000)
-// MKL25Z_REG_PER(ADC0,      ADC,        0x3B000)
-// MKL25Z_REG_PER(RTC,       RTC,        0x3D000)
-// MKL25Z_REG_PER(DAC0,      DAC,        0x3F000)
-// MKL25Z_REG_PER(LPTMR,     LPTMR,      0x40000)
-// MKL25Z_REG_PER(TSI,       TSI,        0x45000)
-// MKL25Z_REG_PER(SIMLP,     SIMLP,      0x47000)
-// MKL25Z_REG_PER(SIM,       SIM,        0x48000)
-// MKL25Z_REG_PER(PORTA,     PORT,       0x49000)
-// MKL25Z_REG_PER(PORTB,     PORT,       0x4A000)
-// MKL25Z_REG_PER(PORTC,     PORT,       0x4B000)
-// MKL25Z_REG_PER(PORTD,     PORT,       0x4C000)
-// MKL25Z_REG_PER(PORTE,     PORT,       0x4D000)
-MKL25Z_REG_PER(MCG,       MCG,        0x64000)
-// MKL25Z_REG_PER(OSC,       OSC,        0x65000)
-// MKL25Z_REG_PER(I2C0,      I2C,        0x66000)
-// MKL25Z_REG_PER(I2C1,      I2C,        0x67000)
-// MKL25Z_REG_PER(UART0,     UART,       0x6A000)
-// MKL25Z_REG_PER(UART1,     UART,       0x6B000)
-// MKL25Z_REG_PER(UART2,     UART,       0x6C000)
-// MKL25Z_REG_PER(USB,       USB,        0x72000)
-// MKL25Z_REG_PER(CMP,       CMP,        0x73000)
-// MKL25Z_REG_PER(SPI0,      SPI,        0x76000)
-// MKL25Z_REG_PER(SPI1,      SPI,        0x77000)
-// MKL25Z_REG_PER(LLWU,      LLWU,       0x7C000)
-// MKL25Z_REG_PER(PMC,       PMC,        0x7D000)
-// MKL25Z_REG_PER(SMC,       SMC,        0x7E000)
-// MKL25Z_REG_PER(RCM,       RCM,        0x7F000)
+#define DMA_BASE (MKL25Z_PERIPH_BASE +        0x08000)
+#define GPIO_CON_BASE (MKL25Z_PERIPH_BASE +   0x0F000)
+#define FLASH_CON_BASE (MKL25Z_PERIPH_BASE +  0x20000)
+#define DMAMUX0_BASE (MKL25Z_PERIPH_BASE +    0x21000)
+#define PIT_BASE (MKL25Z_PERIPH_BASE +        0x37000)
+#define TPM0_BASE (MKL25Z_PERIPH_BASE +       0x38000)
+#define TPM1_BASE (MKL25Z_PERIPH_BASE +       0x39000)
+#define TPM2_BASE (MKL25Z_PERIPH_BASE +       0x3A000)
+#define ADC0_BASE (MKL25Z_PERIPH_BASE +       0x3B000)
+#define RTC_BASE (MKL25Z_PERIPH_BASE +        0x3D000)
+#define DAC0_BASE (MKL25Z_PERIPH_BASE +       0x3F000)
+#define LPTMR_BASE (MKL25Z_PERIPH_BASE +      0x40000)
+#define TSI_BASE (MKL25Z_PERIPH_BASE +        0x45000)
+#define SIMLP_BASE (MKL25Z_PERIPH_BASE +      0x47000)
+#define SIM_BASE (MKL25Z_PERIPH_BASE +        0x48000)
+#define PORTA_BASE (MKL25Z_PERIPH_BASE +      0x49000)
+#define PORTB_BASE (MKL25Z_PERIPH_BASE +      0x4A000)
+#define PORTC_BASE (MKL25Z_PERIPH_BASE +      0x4B000)
+#define PORTD_BASE (MKL25Z_PERIPH_BASE +      0x4C000)
+#define PORTE_BASE (MKL25Z_PERIPH_BASE +      0x4D000)
+#define MCG_BASE (MKL25Z_PERIPH_BASE +        0x64000)
+#define OSC_BASE (MKL25Z_PERIPH_BASE +        0x65000)
+#define I2C0_BASE (MKL25Z_PERIPH_BASE +       0x66000)
+#define I2C1_BASE (MKL25Z_PERIPH_BASE +       0x67000)
+#define UART0_BASE (MKL25Z_PERIPH_BASE +      0x6A000)
+#define UART1_BASE (MKL25Z_PERIPH_BASE +      0x6B000)
+#define UART2_BASE (MKL25Z_PERIPH_BASE +      0x6C000)
+#define USB_BASE (MKL25Z_PERIPH_BASE +        0x72000)
+#define CMP_BASE (MKL25Z_PERIPH_BASE +        0x73000)
+#define SPI0_BASE (MKL25Z_PERIPH_BASE +       0x76000)
+#define SPI1_BASE (MKL25Z_PERIPH_BASE +       0x77000)
+#define LLWU_BASE (MKL25Z_PERIPH_BASE +       0x7C000)
+#define PMC_BASE (MKL25Z_PERIPH_BASE +        0x7D000)
+#define SMC_BASE (MKL25Z_PERIPH_BASE +        0x7E000)
+#define RCM_BASE (MKL25Z_PERIPH_BASE +        0x7F000)
 /*@}*/ /* end of group MKL25Z_MemoryMap */
 
+/******************************************************************************/
+/*                         Peripheral declaration                             */
+/******************************************************************************/
+/** @addtogroup MKL25Z_PeripheralDecl MKL25Z Peripheral Declaration
+  @{
+*/
+
+// #define DMA         (( DMA_TypeDef *)         DMA_BASE)
+// #define GPIO_CON    (( GPIO_CON_TypeDef *)    GPIO_CON_BASE)
+// #define FLASH_CON   (( FLASH_CON_TypeDef *)   FLASH_CON_BASE)
+// #define DMAMUX0     (( DMAMUX_TypeDef *)      DMAMUX0_BASE)
+// #define PIT         (( PIT_TypeDef *)         PIT_BASE)
+// #define TPM0        (( TPM_TypeDef *)         TPM0_BASE)
+// #define TPM1        (( TPM_TypeDef *)         TPM1_BASE)
+// #define TPM2        (( TPM_TypeDef *)         TPM2_BASE)
+// #define ADC0        (( ADC_TypeDef *)         ADC0_BASE)
+// #define RTC         (( RTC_TypeDef *)         RTC_BASE)
+// #define DAC0        (( DAC_TypeDef *)         DAC0_BASE)
+// #define LPTMR       (( LPTMR_TypeDef *)       LPTMR_BASE)
+// #define TSI         (( TSI_TypeDef *)         TSI_BASE)
+// #define SIMLP       (( SIMLP_TypeDef *)       SIMLP_BASE)
+// #define SIM         (( SIM_TypeDef *)         SIM_BASE)
+// #define PORTA       (( PORT_TypeDef *)        PORTA_BASE)
+// #define PORTB       (( PORT_TypeDef *)        PORTB_BASE)
+// #define PORTC       (( PORT_TypeDef *)        PORTC_BASE)
+// #define PORTD       (( PORT_TypeDef *)        PORTD_BASE)
+// #define PORTE       (( PORT_TypeDef *)        PORTE_BASE)
+#define MCG         (( MCG_TypeDef *)         MCG_BASE)
+// #define OSC         (( OSC_TypeDef *)         OSC_BASE)
+// #define I2C0        (( I2C_TypeDef *)         I2C0_BASE)
+// #define I2C1        (( I2C_TypeDef *)         I2C1_BASE)
+// #define UART0       (( UART_TypeDef *)        UART0_BASE)
+// #define UART1       (( UART_TypeDef *)        UART1_BASE)
+// #define UART2       (( UART_TypeDef *)        UART2_BASE)
+// #define USB         (( USB_TypeDef *)         USB_BASE)
+// #define CMP         (( CMP_TypeDef *)         CMP_BASE)
+// #define SPI0        (( SPI_TypeDef *)         SPI0_BASE)
+// #define SPI1        (( SPI_TypeDef *)         SPI1_BASE)
+// #define LLWU        (( LLWU_TypeDef *)        LLWU_BASE)
+// #define PMC         (( PMC_TypeDef *)         PMC_BASE)
+// #define SMC         (( SMC_TypeDef *)         SMC_BASE)
+
+/*@}*/ /* end of group MKL25Z_PeripheralDecl */
+    
 /*@}*/ /* end of group MKL25Z_Definitions */
 
 #ifdef __cplusplus

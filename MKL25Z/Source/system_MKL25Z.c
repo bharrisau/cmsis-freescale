@@ -39,6 +39,8 @@
 #include <stdint.h>
 #include "MKL25Z.h"
 
+/* TODO: Work out what generic stuff needs to be initialised.
+  Should clock config be per board? Or just done using compiler defines */
 
 /*----------------------------------------------------------------------------
   DEFINES
