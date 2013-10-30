@@ -143,6 +143,8 @@ typedef enum IRQn
 #pragma anon_unions
 #endif
 
+
+
 /* ToDo: add here your device specific peripheral access structure typedefs
          following is an example for a timer                                  */
 
@@ -173,42 +175,62 @@ typedef struct
 
 /*@}*/ /* end of group MKL25Z_Peripherals */
 
-
 /******************************************************************************/
-/*                         Peripheral memory map                              */
+/*                           Peripheral declaration                           */
 /******************************************************************************/
-/* ToDo: add here your device peripherals base addresses
-         following is an example for timer                                    */
-/** @addtogroup MKL25Z_MemoryMap MKL25Z Memory Mapping
+/** @addtogroup MKL25Z_MemoryMap MKL25Z Memory Mapping and declaration
   @{
 */
 
-/* Peripheral and SRAM base address */
-#define <DeviceAbbreviation>_FLASH_BASE       (0x00000000UL)                              /*!< (FLASH     ) Base Address */
-#define <DeviceAbbreviation>_SRAM_BASE        (0x20000000UL)                              /*!< (SRAM      ) Base Address */
-#define <DeviceAbbreviation>_PERIPH_BASE      (0x40000000UL)                              /*!< (Peripheral) Base Address */
+/* Peripheral and base address */
+#define MKL25Z_PERIPH_BASE      (0x40000000UL)                              /*!< (Peripheral) Base Address */
+
+/* Shortcut macro */
+#define MKL25Z_REG_BASE(name, addr) #define name ## _BASE (MKL25Z_PERIPH_BASE + addr)
+#define MKL25Z_REG_PER(name, type, addr) \
+    MKL25Z_REG_BASE(name, addr) \
+    #define NAME ((type ## _TypeDef *) name ## _BASE)
+
+/* Peripherals */
+#include "../../peripheral/mcg.h"
 
 /* Peripheral memory map */
-#define <DeviceAbbreviation>TIM0_BASE         (<DeviceAbbreviation>_PERIPH_BASE)          /*!< (Timer0    ) Base Address */
-#define <DeviceAbbreviation>TIM1_BASE         (<DeviceAbbreviation>_PERIPH_BASE + 0x0800) /*!< (Timer1    ) Base Address */
-#define <DeviceAbbreviation>TIM2_BASE         (<DeviceAbbreviation>_PERIPH_BASE + 0x1000) /*!< (Timer2    ) Base Address */
+// MKL25Z_REG_PER(DMA,       DMA,        0x08000)
+// MKL25Z_REG_PER(GPIO_CON,  GPIO_CON,   0x0F000)
+// MKL25Z_REG_PER(FLASH_CON, FLASH_CON,  0x20000)
+// MKL25Z_REG_PER(DMAMUX0,   DMAMUX,     0x21000)
+// MKL25Z_REG_PER(PIT,       PIT,        0x37000)
+// MKL25Z_REG_PER(TPM0,      TPM,        0x38000)
+// MKL25Z_REG_PER(TPM1,      TPM,        0x39000)
+// MKL25Z_REG_PER(TPM2,      TPM,        0x3A000)
+// MKL25Z_REG_PER(ADC0,      ADC,        0x3B000)
+// MKL25Z_REG_PER(RTC,       RTC,        0x3D000)
+// MKL25Z_REG_PER(DAC0,      DAC,        0x3F000)
+// MKL25Z_REG_PER(LPTMR,     LPTMR,      0x40000)
+// MKL25Z_REG_PER(TSI,       TSI,        0x45000)
+// MKL25Z_REG_PER(SIMLP,     SIMLP,      0x47000)
+// MKL25Z_REG_PER(SIM,       SIM,        0x48000)
+// MKL25Z_REG_PER(PORTA,     PORT,       0x49000)
+// MKL25Z_REG_PER(PORTB,     PORT,       0x4A000)
+// MKL25Z_REG_PER(PORTC,     PORT,       0x4B000)
+// MKL25Z_REG_PER(PORTD,     PORT,       0x4C000)
+// MKL25Z_REG_PER(PORTE,     PORT,       0x4D000)
+MKL25Z_REG_PER(MCG,       MCG,        0x64000)
+// MKL25Z_REG_PER(OSC,       OSC,        0x65000)
+// MKL25Z_REG_PER(I2C0,      I2C,        0x66000)
+// MKL25Z_REG_PER(I2C1,      I2C,        0x67000)
+// MKL25Z_REG_PER(UART0,     UART,       0x6A000)
+// MKL25Z_REG_PER(UART1,     UART,       0x6B000)
+// MKL25Z_REG_PER(UART2,     UART,       0x6C000)
+// MKL25Z_REG_PER(USB,       USB,        0x72000)
+// MKL25Z_REG_PER(CMP,       CMP,        0x73000)
+// MKL25Z_REG_PER(SPI0,      SPI,        0x76000)
+// MKL25Z_REG_PER(SPI1,      SPI,        0x77000)
+// MKL25Z_REG_PER(LLWU,      LLWU,       0x7C000)
+// MKL25Z_REG_PER(PMC,       PMC,        0x7D000)
+// MKL25Z_REG_PER(SMC,       SMC,        0x7E000)
+// MKL25Z_REG_PER(RCM,       RCM,        0x7F000)
 /*@}*/ /* end of group MKL25Z_MemoryMap */
-
-
-/******************************************************************************/
-/*                         Peripheral declaration                             */
-/******************************************************************************/
-/* ToDo: add here your device peripherals pointer definitions
-         following is an example for timer                                    */
-
-/** @addtogroup MKL25Z_PeripheralDecl MKL25Z Peripheral Declaration
-  @{
-*/
-
-#define <DeviceAbbreviation>_TIM0        ((<DeviceAbbreviation>_TMR_TypeDef *) <DeviceAbbreviation>TIM0_BASE)
-#define <DeviceAbbreviation>_TIM1        ((<DeviceAbbreviation>_TMR_TypeDef *) <DeviceAbbreviation>TIM0_BASE)
-#define <DeviceAbbreviation>_TIM2        ((<DeviceAbbreviation>_TMR_TypeDef *) <DeviceAbbreviation>TIM0_BASE)
-/*@}*/ /* end of group MKL25Z_PeripheralDecl */
 
 /*@}*/ /* end of group MKL25Z_Definitions */
 
