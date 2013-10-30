@@ -173,7 +173,7 @@ typedef struct {
   __IO union MCG_C6_REG C6;    /*!< Offset: 0x0005   MCG Control 6 Register */
   __I  union MCG_S_REG S;      /*!< Offset: 0x0006   MCG Status Register    */
        uint8_t RESERVED0;
-  __IO union MCG_SC_REG SC     /*!< Offset: 0x0008   MCG Status and Control Register                 */
+  __IO union MCG_SC_REG SC     /*!< Offset: 0x0008   MCG Status and Control Register */
        uint8_t RESERVED1;
   __IO uint8_t ATCVH;          /*!< Offset: 0x000A   MCG Auto Trim Compare Value High Register */
   __IO uint8_t ATCVL;          /*!< Offset: 0x000B   MCG Auto Trim Compare Value Low Register */
