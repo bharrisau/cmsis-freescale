@@ -33,13 +33,13 @@
 
 struct MCG_C1_REG {
   union {
-    uint8_t             all;
+    __IO uint8_t             all;
     struct {
-      uint8_t IREFSTEN  : 1;
-      uint8_t IRCLKEN   : 1;
-      uint8_t IREFS     : 1;
-      uint8_t FRDIV     : 3;
-      enum {
+      __IO uint8_t IREFSTEN  : 1;
+      __IO uint8_t IRCLKEN   : 1;
+      __IO uint8_t IREFS     : 1;
+      __IO uint8_t FRDIV     : 3;
+      __IO enum {
         MCG_CLKS_FLLPLL = 0,
         MCG_CLKS_INT    = 1,
         MCG_CLKS_EXT    = 2
@@ -50,90 +50,90 @@ struct MCG_C1_REG {
 
 struct MCG_C2_REG {
   union {
-    uint8_t             all;
+    __IO uint8_t             all;
     struct {
-      uint8_t IRCS      : 1;
-      uint8_t LP        : 1;
-      uint8_t EREFS0    : 1;
-      uint8_t HGO0      : 1;
-      enum {
+      __IO uint8_t IRCS      : 1;
+      __IO uint8_t LP        : 1;
+      __IO uint8_t EREFS0    : 1;
+      __IO uint8_t HGO0      : 1;
+      __IO enum {
         MCG_RANGE0_LOW    = 0,
         MCG_RANGE0_HIGH   = 1,
         MCG_RANGE0_VHIGH  = 2
       } RANGE0          : 2;
-      uint8_t RESERVED  : 1;
-      uint8_t LOCRE0    : 1;
+           uint8_t RESERVED  : 1;
+      __IO uint8_t LOCRE0    : 1;
     };
   };
 };
 
 struct MCG_C4_REG {
   union {
-    uint8_t             all;
+    __IO uint8_t             all;
     struct {
-      uint8_t SCFTRIM   : 1;
-      uint8_t FCTRIM    : 4;
-      enum {
+      __IO uint8_t SCFTRIM   : 1;
+      __IO uint8_t FCTRIM    : 4;
+      __IO enum {
         MCG_DRST_DRS_LOW      = 0,
         MCG_DRST_DRS_MID      = 1,
         MCG_DRST_DRS_MIDHIGH  = 2,
         MCG_DRST_DRS_HIGH     = 3
       } DRST_DRS        : 2;
-      uint8_t DMX32     : 1;
+      __IO uint8_t DMX32     : 1;
     };
   };
 };
 
 struct MCG_C5_REG {
   union {
-    uint8_t             all;
+    __IO uint8_t             all;
     struct {
-      uint8_t PRDIV0    : 5;
-      uint8_t PLLSTEN0  : 1;
-      uint8_t PLLCLKEN0 : 1;
-      uint8_t RESERVED  : 1;
+      __IO uint8_t PRDIV0    : 5;
+      __IO uint8_t PLLSTEN0  : 1;
+      __IO uint8_t PLLCLKEN0 : 1;
+           uint8_t RESERVED  : 1;
     };
   };
 };
 
 struct MCG_C6_REG {
   union {
-    uint8_t             all;
+    __IO uint8_t             all;
     struct {
-      uint8_t VDIV0     : 5;
-      uint8_t CME0      : 1;
-      uint8_t PLLS      : 1;
-      uint8_t LOLIE0    : 1;
+      __IO uint8_t VDIV0     : 5;
+      __IO uint8_t CME0      : 1;
+      __IO uint8_t PLLS      : 1;
+      __IO uint8_t LOLIE0    : 1;
     };
   };
 };
 
 struct MCG_S_REG {
   union {
-    uint8_t             all;
+    __I  uint8_t             all;
     struct {
-      uint8_t IRCST     : 1;
-      uint8_t OSCINIT0  : 1;
-      enum {
+      __I  uint8_t IRCST     : 1;
+      __I  uint8_t OSCINIT0  : 1;
+      __I  enum {
         MCG_CLKST_FLL     = 0,
         MCG_CLKST_INT     = 1,
         MCG_CLKST_EXT     = 2,
         MCG_CLKST_PLL     = 3
       } CLKST           : 2;
-      uint8_t IREFST    : 1;
-      uint8_t PLLST     : 1;
-      uint8_t LOCK0     : 1;
-      uint8_t LOLS      : 1;
+      __I  uint8_t IREFST    : 1;
+      __I  uint8_t PLLST     : 1;
+      __I  uint8_t LOCK0     : 1;
+      __I  uint8_t LOLS      : 1;
     };
   };
 };
 
 struct MCG_SC_REG {
   union {
-    uint8_t             all;
+    __IO uint8_t             all;
     struct {
-      uint8_t LOCS0     : 1;
-      enum {
+      __I  uint8_t LOCS0     : 1;
+      __IO enum {
         MCG_FCRDIV_1      = 0,
         MCG_FCRDIV_2      = 1,
         MCG_FCRDIV_4      = 2,
@@ -143,40 +143,40 @@ struct MCG_SC_REG {
         MCG_FCRDIV_64     = 6,
         MCG_FCRDIV_128    = 7
       } FCRDIV          : 3;
-      uint8_t FLTPRSRV  : 1;
-      uint8_t ATMF      : 1;
-      uint8_t ATMS      : 1;
-      uint8_t ATME      : 1;
+      __IO uint8_t FLTPRSRV  : 1;
+      __I  uint8_t ATMF      : 1;
+      __IO uint8_t ATMS      : 1;
+      __IO uint8_t ATME      : 1;
     };
   };
 };
 
 struct MCG_C8_REG {
   union {
-    uint8_t             all;
+    __IO uint8_t             all;
     struct {
-      uint8_t RESERVED0 : 6;
-      uint8_t LOLRE     : 1;
-      uint8_t RESERVED1 : 1;
+           uint8_t RESERVED0 : 6;
+      __IO uint8_t LOLRE     : 1;
+           uint8_t RESERVED1 : 1;
     };
   };
 };
 
 typedef struct {
-  __IO struct MCG_C1_REG C1;    /*!< Offset: 0x0000   MCG Control 1 Register */
-  __IO struct MCG_C2_REG C2;    /*!< Offset: 0x0001   MCG Control 2 Register */
-  __IO struct MCG_C3_REG C3;    /*!< Offset: 0x0002   MCG Control 3 Register */
-  __IO struct MCG_C4_REG C4;    /*!< Offset: 0x0003   MCG Control 4 Register */
-  __IO struct MCG_C5_REG C5;    /*!< Offset: 0x0004   MCG Control 5 Register */
-  __IO struct MCG_C6_REG C6;    /*!< Offset: 0x0005   MCG Control 6 Register */
-  __I  struct MCG_S_REG S;      /*!< Offset: 0x0006   MCG Status Register    */
+       struct MCG_C1_REG C1;    /*!< Offset: 0x0000   MCG Control 1 Register */
+       struct MCG_C2_REG C2;    /*!< Offset: 0x0001   MCG Control 2 Register */
+       struct MCG_C3_REG C3;    /*!< Offset: 0x0002   MCG Control 3 Register */
+       struct MCG_C4_REG C4;    /*!< Offset: 0x0003   MCG Control 4 Register */
+       struct MCG_C5_REG C5;    /*!< Offset: 0x0004   MCG Control 5 Register */
+       struct MCG_C6_REG C6;    /*!< Offset: 0x0005   MCG Control 6 Register */
+       struct MCG_S_REG S;      /*!< Offset: 0x0006   MCG Status Register    */
        uint8_t RESERVED0;
-  __IO struct MCG_SC_REG SC     /*!< Offset: 0x0008   MCG Status and Control Register */
+       struct MCG_SC_REG SC     /*!< Offset: 0x0008   MCG Status and Control Register */
        uint8_t RESERVED1;
-  __IO uint8_t ATCVH;          /*!< Offset: 0x000A   MCG Auto Trim Compare Value High Register */
-  __IO uint8_t ATCVL;          /*!< Offset: 0x000B   MCG Auto Trim Compare Value Low Register */
-  __IO uint8_t C7;             /*!< Offset: 0x000C   MCG Control 7 Register */
-  __IO struct MCG_C8_REG C8;    /*!< Offset: 0x000D   MCG Control 8 Register */
-  __IO uint8_t C9;             /*!< Offset: 0x000E   MCG Control 9 Register */
-  __IO uint8_t C10;            /*!< Offset: 0x000F   MCG Control 10 Register */
+  __IO uint8_t ATCVH;           /*!< Offset: 0x000A   MCG Auto Trim Compare Value High Register */
+  __IO uint8_t ATCVL;           /*!< Offset: 0x000B   MCG Auto Trim Compare Value Low Register */
+  __IO uint8_t C7;              /*!< Offset: 0x000C   MCG Control 7 Register */
+       struct MCG_C8_REG C8;    /*!< Offset: 0x000D   MCG Control 8 Register */
+  __IO uint8_t C9;              /*!< Offset: 0x000E   MCG Control 9 Register */
+  __IO uint8_t C10;             /*!< Offset: 0x000F   MCG Control 10 Register */
 } MCG_TypeDef
