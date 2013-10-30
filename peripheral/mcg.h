@@ -179,4 +179,4 @@ typedef struct {
        struct MCG_C8_REG C8;    /*!< Offset: 0x000D   MCG Control 8 Register */
   __IO uint8_t C9;              /*!< Offset: 0x000E   MCG Control 9 Register */
   __IO uint8_t C10;             /*!< Offset: 0x000F   MCG Control 10 Register */
-} MCG_TypeDef
+} MCG_TypeDef;
