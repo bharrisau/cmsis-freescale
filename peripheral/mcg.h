@@ -165,7 +165,7 @@ struct MCG_C8_REG {
 typedef struct {
        struct MCG_C1_REG C1;    /*!< Offset: 0x0000   MCG Control 1 Register */
        struct MCG_C2_REG C2;    /*!< Offset: 0x0001   MCG Control 2 Register */
-       struct MCG_C3_REG C3;    /*!< Offset: 0x0002   MCG Control 3 Register */
+  __IO uint8_t C3;              /*!< Offset: 0x0002   MCG Control 3 Register */
        struct MCG_C4_REG C4;    /*!< Offset: 0x0003   MCG Control 4 Register */
        struct MCG_C5_REG C5;    /*!< Offset: 0x0004   MCG Control 5 Register */
        struct MCG_C6_REG C6;    /*!< Offset: 0x0005   MCG Control 6 Register */

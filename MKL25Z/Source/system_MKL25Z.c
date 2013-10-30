@@ -39,9 +39,6 @@
 #include <stdint.h>
 #include "MKL25Z.h"
 
-/* TODO: Work out what generic stuff needs to be initialised.
-  Should clock config be per board? Or just done using compiler defines */
-
 /*----------------------------------------------------------------------------
   DEFINES
  *----------------------------------------------------------------------------*/
@@ -49,21 +46,18 @@
 /*----------------------------------------------------------------------------
   Define clocks
  *----------------------------------------------------------------------------*/
-/* ToDo: add here your necessary defines for device initialization
-         following is an example for different system frequencies             */
-#define __HSI             ( 6000000UL)
-#define __XTAL            (12000000UL)    /* Oscillator frequency             */
-#define __SYS_OSC_CLK     (    ___HSI)    /* Main oscillator frequency        */
+#ifndef __SYSTEM_CLOCK_MODE
+#  define __SYSTEM_CLOCK_MODE       0
+#  define __SYSTEM_CLOCK            21000000u
+#endif
 
-#define __SYSTEM_CLOCK    (4*__XTAL)
-
+#ifndef __SYSTEM_CLOCK
+#  error "__SYSTEM_CLOCK must be defined for custom clock modes"
+#endif
 
 /*----------------------------------------------------------------------------
   Clock Variable definitions
  *----------------------------------------------------------------------------*/
-/* ToDo: initialize SystemCoreClock with the system core clock frequency value
-         achieved after system intitialization.
-         This means system core clock frequency after call to SystemInit()    */
 uint32_t SystemCoreClock = __SYSTEM_CLOCK;  /*!< System Clock Frequency (Core Clock)*/
 
 
@@ -72,10 +66,6 @@ uint32_t SystemCoreClock = __SYSTEM_CLOCK;  /*!< System Clock Frequency (Core Cl
  *----------------------------------------------------------------------------*/
 void SystemCoreClockUpdate (void)            /* Get Core Clock Frequency      */
 {
-/* ToDo: add code to calculate the system frequency based upon the current
-         register settings.
-         This function can be used to retrieve the system core clock frequeny
-         after user changed register sittings.                                */
   SystemCoreClock = __SYSTEM_CLOCK;
 }
 
@@ -90,8 +80,10 @@ void SystemCoreClockUpdate (void)            /* Get Core Clock Frequency      */
  */
 void SystemInit (void)
 {
-/* ToDo: add code to initialize the system
-         do not use global variables because this function is called before
-         reaching pre-main. RW section maybe overwritten afterwards.          */
-  SystemCoreClock = __SYSTEM_CLOCK;
+#if (__SYSTEM_CLOCK_MODE == 0)
+  //Stay with the defaults for now. May need to modify this function to return
+  //the system to the default clock (from any state)
+#else
+#  error "Unknown value for __SYSTEM_CLOCK_MODE"
+#endif
 }
