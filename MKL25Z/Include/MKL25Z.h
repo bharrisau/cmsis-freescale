@@ -43,6 +43,9 @@
 #ifdef __cplusplus
  extern "C" {
 #endif
+#if 0
+}
+#endif
 
 /** @addtogroup MKL25Z_Definitions MKL25Z Definitions
   This file defines all structures and symbols for MKL25Z:
@@ -156,6 +159,7 @@ typedef enum IRQn
 #endif
 
 #include "../../peripheral/mcg.h"
+#include "../../peripheral/pit.h"
 
 /* --------------------  End of section using anonymous unions  ------------------- */
 #if defined(__CC_ARM)
@@ -233,7 +237,7 @@ typedef enum IRQn
 // #define GPIO_CON    (( GPIO_CON_TypeDef *)    GPIO_CON_BASE)
 // #define FLASH_CON   (( FLASH_CON_TypeDef *)   FLASH_CON_BASE)
 // #define DMAMUX0     (( DMAMUX_TypeDef *)      DMAMUX0_BASE)
-// #define PIT         (( PIT_TypeDef *)         PIT_BASE)
+#define PIT         (( PIT_TypeDef *)         PIT_BASE)
 // #define TPM0        (( TPM_TypeDef *)         TPM0_BASE)
 // #define TPM1        (( TPM_TypeDef *)         TPM1_BASE)
 // #define TPM2        (( TPM_TypeDef *)         TPM2_BASE)

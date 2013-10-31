@@ -31,6 +31,9 @@
    POSSIBILITY OF SUCH DAMAGE.
    ---------------------------------------------------------------------------*/
 
+#ifndef __FREESC_MCG_H
+#define __FREESC_MCG_H
+
 struct MCG_C1_REG {
   union {
     __IO uint8_t             all;
@@ -180,3 +183,5 @@ typedef struct {
   __IO uint8_t C9;              /*!< Offset: 0x000E   MCG Control 9 Register */
   __IO uint8_t C10;             /*!< Offset: 0x000F   MCG Control 10 Register */
 } MCG_TypeDef;
+
+#endif
