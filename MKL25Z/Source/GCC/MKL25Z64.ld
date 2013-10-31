@@ -1,8 +1,11 @@
 /* Linker script to configure memory regions. */
 MEMORY
 {
-  FLASH (rx) : ORIGIN = 0x00000000, LENGTH = 64K      /*  64k */
-  RAM (rwx)  : ORIGIN = 0x1FFFF800, LENGTH = 8K      	/*   8k */
+  VECT (r)       : ORIGIN = 0x00000000, LENGTH = 0xC0  			  /*  Vector area */
+  FLASH (rx)     : ORIGIN = 0x00000410, LENGTH = 64K - 0x410  /*  64k */
+  RAM (rwx)      : ORIGIN = 0x1FFFF800, LENGTH = 8K     			/*   8k */
+  FCFG (r)       : ORIGIN = 0x00000400, LENGTH = 16     			/*   16 flash configuration */
+  FIRC (r)       : ORIGIN = 0x000003FC, LENGTH = 4    				/*    4 IRC trim */
 }
 
 /* Library configurations */
@@ -38,9 +41,12 @@ ENTRY(Reset_Handler)
 
 SECTIONS
 {
+	.vectors : {
+		KEEP(*(.isr_vector))
+	} > VECT
+
 	.text :
 	{
-		KEEP(*(.isr_vector))
 		*(.text*)
 
 		KEEP(*(.init))
