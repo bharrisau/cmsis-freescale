@@ -124,6 +124,8 @@ __isr_vector:
 		.long    0                     /* Reserved */
 		.long    PORTA_IRQHandler 		 /*  Port A interrupt                         */
 		.long    PORTD_IRQn    				 /* Port D interrupt                          */
+		
+		//.space   0x350								 /* Space out to beginning of program flash */
 
 		.size    __isr_vector, . - __isr_vector
 

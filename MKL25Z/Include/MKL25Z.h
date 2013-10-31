@@ -160,6 +160,7 @@ typedef enum IRQn
 
 #include "../../peripheral/mcg.h"
 #include "../../peripheral/pit.h"
+#include "../../peripheral/gpio.h"
 
 /* --------------------  End of section using anonymous unions  ------------------- */
 #if defined(__CC_ARM)
@@ -190,7 +191,11 @@ typedef enum IRQn
 
 /* Peripheral memory map */
 #define DMA_BASE (MKL25Z_PERIPH_BASE +        0x08000)
-#define GPIO_CON_BASE (MKL25Z_PERIPH_BASE +   0x0F000)
+#define GPIOA_BASE (MKL25Z_PERIPH_BASE +      0x0F000)
+#define GPIOB_BASE (MKL25Z_PERIPH_BASE +      0x0F040)
+#define GPIOC_BASE (MKL25Z_PERIPH_BASE +      0x0F080)
+#define GPIOD_BASE (MKL25Z_PERIPH_BASE +      0x0F0C0)
+#define GPIOE_BASE (MKL25Z_PERIPH_BASE +      0x0F100)
 #define FLASH_CON_BASE (MKL25Z_PERIPH_BASE +  0x20000)
 #define DMAMUX0_BASE (MKL25Z_PERIPH_BASE +    0x21000)
 #define PIT_BASE (MKL25Z_PERIPH_BASE +        0x37000)
@@ -224,6 +229,11 @@ typedef enum IRQn
 #define PMC_BASE (MKL25Z_PERIPH_BASE +        0x7D000)
 #define SMC_BASE (MKL25Z_PERIPH_BASE +        0x7E000)
 #define RCM_BASE (MKL25Z_PERIPH_BASE +        0x7F000)
+#define FGPIOA_BASE (                      0xF80FF000)
+#define FGPIOB_BASE (                      0xF80FF040)
+#define FGPIOC_BASE (                      0xF80FF080)
+#define FGPIOD_BASE (                      0xF80FF0C0)
+#define FGPIOE_BASE (                      0xF80FF100)
 /*@}*/ /* end of group MKL25Z_MemoryMap */
 
 /******************************************************************************/
@@ -234,7 +244,11 @@ typedef enum IRQn
 */
 
 // #define DMA         (( DMA_TypeDef *)         DMA_BASE)
-// #define GPIO_CON    (( GPIO_CON_TypeDef *)    GPIO_CON_BASE)
+#define GPIOA       (( GPIO_TypeDef *)        GPIOA_BASE)
+#define GPIOB       (( GPIO_TypeDef *)        GPIOB_BASE)
+#define GPIOC       (( GPIO_TypeDef *)        GPIOC_BASE)
+#define GPIOD       (( GPIO_TypeDef *)        GPIOD_BASE)
+#define GPIOE       (( GPIO_TypeDef *)        GPIOE_BASE)
 // #define FLASH_CON   (( FLASH_CON_TypeDef *)   FLASH_CON_BASE)
 // #define DMAMUX0     (( DMAMUX_TypeDef *)      DMAMUX0_BASE)
 #define PIT         (( PIT_TypeDef *)         PIT_BASE)
@@ -248,11 +262,11 @@ typedef enum IRQn
 // #define TSI         (( TSI_TypeDef *)         TSI_BASE)
 // #define SIMLP       (( SIMLP_TypeDef *)       SIMLP_BASE)
 // #define SIM         (( SIM_TypeDef *)         SIM_BASE)
-// #define PORTA       (( PORT_TypeDef *)        PORTA_BASE)
-// #define PORTB       (( PORT_TypeDef *)        PORTB_BASE)
-// #define PORTC       (( PORT_TypeDef *)        PORTC_BASE)
-// #define PORTD       (( PORT_TypeDef *)        PORTD_BASE)
-// #define PORTE       (( PORT_TypeDef *)        PORTE_BASE)
+#define PORTA       (( PORT_TypeDef *)        PORTA_BASE)
+#define PORTB       (( PORT_TypeDef *)        PORTB_BASE)
+#define PORTC       (( PORT_TypeDef *)        PORTC_BASE)
+#define PORTD       (( PORT_TypeDef *)        PORTD_BASE)
+#define PORTE       (( PORT_TypeDef *)        PORTE_BASE)
 #define MCG         (( MCG_TypeDef *)         MCG_BASE)
 // #define OSC         (( OSC_TypeDef *)         OSC_BASE)
 // #define I2C0        (( I2C_TypeDef *)         I2C0_BASE)
@@ -267,6 +281,11 @@ typedef enum IRQn
 // #define LLWU        (( LLWU_TypeDef *)        LLWU_BASE)
 // #define PMC         (( PMC_TypeDef *)         PMC_BASE)
 // #define SMC         (( SMC_TypeDef *)         SMC_BASE)
+#define FGPIOA      (( GPIO_TypeDef *)        FGPIOA_BASE)
+#define FGPIOB      (( GPIO_TypeDef *)        FGPIOB_BASE)
+#define FGPIOC      (( GPIO_TypeDef *)        FGPIOC_BASE)
+#define FGPIOD      (( GPIO_TypeDef *)        FGPIOD_BASE)
+#define FGPIOE      (( GPIO_TypeDef *)        FGPIOE_BASE)
 
 /*@}*/ /* end of group MKL25Z_PeripheralDecl */
     

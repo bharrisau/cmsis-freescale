@@ -1,8 +1,8 @@
 /* Linker script to configure memory regions. */
 MEMORY
 {
-  VECT (r)       : ORIGIN = 0x00000000, LENGTH = 0xC0  			  /*  Vector area */
-  FLASH (rx)     : ORIGIN = 0x00000410, LENGTH = 64K - 0x410  /*  64k */
+  VECT (r)       : ORIGIN = 0x00000000, LENGTH = 0x410			  /*  Vector area */
+  FLASH (rx)     : ORIGIN = 0x00000000, LENGTH = 64K - 0x410  /*  64k */
   RAM (rwx)      : ORIGIN = 0x1FFFF800, LENGTH = 8K     			/*   8k */
   FCFG (r)       : ORIGIN = 0x00000400, LENGTH = 16     			/*   16 flash configuration */
   FIRC (r)       : ORIGIN = 0x000003FC, LENGTH = 4    				/*    4 IRC trim */
@@ -41,11 +41,15 @@ ENTRY(Reset_Handler)
 
 SECTIONS
 {
-	.vectors : {
+	.isr_vector :
+	{
 		KEEP(*(.isr_vector))
-	} > VECT
+    *(.text.Reset_Handler)
+    *(.text.SystemInit)
+     . = ALIGN(4);
+	} > VECT = 0xFF
 
-	.text :
+	.text 0x800 :
 	{
 		*(.text*)
 
@@ -69,7 +73,7 @@ SECTIONS
 		*(.rodata*)
 
 		KEEP(*(.eh_frame*))
-	} > FLASH
+	} > FLASH = 0xFF
 
 	.ARM.extab :
 	{
