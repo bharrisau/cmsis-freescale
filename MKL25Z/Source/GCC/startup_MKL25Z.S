@@ -124,12 +124,25 @@ __isr_vector:
 		.long    0                     /* Reserved */
 		.long    PORTA_IRQHandler 		 /*  Port A interrupt                         */
 		.long    PORTD_IRQn    				 /* Port D interrupt                          */
-		
-		//.space   0x350								 /* Space out to beginning of program flash */
 
 		.size    __isr_vector, . - __isr_vector
 
-		.text
+		.section .kinetis_flash_config
+		.align 2
+		.globl __kinetis_flash_config
+__kinetis_flash_config:
+    .long 0xffffffff							/* Backdoor comparison key 0,1,2,3 */
+    .long 0xffffffff							/* Backdoor comparison key 4,5,6,7 */
+    .byte 0xff										/* FPROT3 */
+    .byte 0xff										/* FPROT2 */
+    .byte 0xff										/* FPROT1 */
+    .byte 0xff										/* FPROT0 */
+    .byte 0xfe										/* FSEC   */
+    .byte 0xff										/* FOPT   */
+    .byte 0xff										/* Reserved */
+    .byte 0xff										/* Reserved */
+
+		.section	.text.Reset_Handler
 		.thumb
 		.thumb_func
 		.align 2
@@ -178,6 +191,7 @@ Reset_Handler:
 
 /* Exception Handlers */
 
+		.text
 		.weak   NMI_Handler
 		.type   NMI_Handler, %function
 NMI_Handler:
