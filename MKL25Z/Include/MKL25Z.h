@@ -158,6 +158,7 @@ typedef enum IRQn
   #warning Not supported compiler type
 #endif
 
+#include "../../peripheral/sim.h"
 #include "../../peripheral/mcg.h"
 #include "../../peripheral/pit.h"
 #include "../../peripheral/gpio.h"
@@ -260,8 +261,8 @@ typedef enum IRQn
 // #define DAC0        (( DAC_TypeDef *)         DAC0_BASE)
 // #define LPTMR       (( LPTMR_TypeDef *)       LPTMR_BASE)
 // #define TSI         (( TSI_TypeDef *)         TSI_BASE)
-// #define SIMLP       (( SIMLP_TypeDef *)       SIMLP_BASE)
-// #define SIM         (( SIM_TypeDef *)         SIM_BASE)
+#define SIMLP       (( SIMLP_TypeDef *)       SIMLP_BASE)
+#define SIM         (( SIM_TypeDef *)         SIM_BASE)
 #define PORTA       (( PORT_TypeDef *)        PORTA_BASE)
 #define PORTB       (( PORT_TypeDef *)        PORTB_BASE)
 #define PORTC       (( PORT_TypeDef *)        PORTC_BASE)
